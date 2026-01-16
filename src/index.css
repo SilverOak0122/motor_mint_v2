@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 15% 5%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 13% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 13% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 186 100% 57%;
+    --primary-foreground: 220 15% 5%;
+
+    --secondary: 274 100% 65%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 220 13% 12%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 274 100% 65%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 345 100% 62%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 13% 15%;
+    --input: 220 13% 15%;
+    --ring: 186 100% 57%;
+
+    --radius: 0.75rem;
+
+    /* Custom MotorMint tokens */
+    --neon-blue: 186 100% 57%;
+    --neon-violet: 274 100% 65%;
+    --neon-red: 345 100% 62%;
+    --neon-green: 160 100% 50%;
+    
+    --glass-bg: 220 13% 10%;
+    --glass-border: 220 13% 20%;
+    
+    --gradient-neon: linear-gradient(135deg, hsl(var(--neon-blue)) 0%, hsl(var(--neon-violet)) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(220 13% 10% / 0.8) 0%, hsl(220 13% 6% / 0.9) 100%);
+    --gradient-hero: linear-gradient(180deg, transparent 0%, hsl(var(--background)) 100%);
+    
+    --shadow-neon-blue: 0 0 30px hsl(var(--neon-blue) / 0.3);
+    --shadow-neon-violet: 0 0 30px hsl(var(--neon-violet) / 0.3);
+    --shadow-card: 0 8px 32px hsl(220 13% 0% / 0.4);
+    --shadow-glow: 0 0 60px hsl(var(--neon-blue) / 0.15);
+
+    --sidebar-background: 220 13% 6%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 186 100% 57%;
+    --sidebar-primary-foreground: 220 15% 5%;
+    --sidebar-accent: 220 13% 12%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 220 13% 15%;
+    --sidebar-ring: 186 100% 57%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-card/60 backdrop-blur-xl border border-border/50;
+  }
+
+  .glass-strong {
+    @apply bg-card/80 backdrop-blur-2xl border border-border/60;
+  }
+
+  .neon-text {
+    text-shadow: 0 0 20px hsl(var(--neon-blue) / 0.5), 0 0 40px hsl(var(--neon-blue) / 0.3);
+  }
+
+  .neon-text-violet {
+    text-shadow: 0 0 20px hsl(var(--neon-violet) / 0.5), 0 0 40px hsl(var(--neon-violet) / 0.3);
+  }
+
+  .neon-border {
+    box-shadow: 0 0 20px hsl(var(--neon-blue) / 0.2), inset 0 0 20px hsl(var(--neon-blue) / 0.05);
+  }
+
+  .neon-glow {
+    box-shadow: 0 0 40px hsl(var(--neon-blue) / 0.3), 0 0 80px hsl(var(--neon-blue) / 0.15);
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 60px hsl(var(--neon-blue) / 0.2), 0 0 40px hsl(var(--neon-blue) / 0.1);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--neon-blue)) 0%, hsl(var(--neon-violet)) 100%);
+  }
+
+  .health-ring {
+    background: conic-gradient(
+      hsl(var(--neon-green)) var(--health-percent, 85%),
+      hsl(var(--muted)) var(--health-percent, 85%)
+    );
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.5s ease-out forwards;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(var(--neon-blue) / 0.3);
+    }
+    50% { 
+      box-shadow: 0 0 40px hsl(var(--neon-blue) / 0.5), 0 0 60px hsl(var(--neon-blue) / 0.3);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+}
